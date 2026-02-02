@@ -2,7 +2,7 @@
 
 An AI-powered personal financial management platform that helps you take control of your finances with intelligent insights, budget tracking, goal management, and personalized financial coaching powered by Google Gemini AI.
 
-Design Document: DESIGN_DOCUMENTATION.md
+Design Document: [DESIGN_DOCUMENTATION.md](https://github.com/pu1kith00da/SmartFinancialCoach/blob/main/DESIGN_DOCUMENTATION.md)
 
 Demo Link: https://youtu.be/eqmDgPwv76U
 
