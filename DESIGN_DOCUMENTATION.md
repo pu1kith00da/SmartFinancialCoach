@@ -712,6 +712,7 @@ const mutation = useMutation({
 | **OAuth Social Login** | Sign in with Google, GitHub, and Microsoft accounts | High |
 | **Real-time Notifications** | WebSocket-based alerts for budget thresholds | High |
 | **Bill Reminders** | Automated reminders for upcoming bills | High |
+| **More Robust Chatbot** | Add more MCP Tools for the chatbot to access | High |
 | **Export to CSV/PDF** | Download transaction history and reports | Medium |
 | **Dark Mode** | Theme toggle for user preference | Medium |
 | **Mobile PWA** | Progressive Web App for mobile access | Medium |
