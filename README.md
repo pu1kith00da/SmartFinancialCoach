@@ -6,6 +6,7 @@ Design Document: [DESIGN_DOCUMENTATION.md](https://github.com/pu1kith00da/SmartF
 
 Demo Link: https://youtu.be/eqmDgPwv76U
 
+Diagram of Smart Financial Coach Application
 ![Diagram of Smart Financial Coach Application](SmartFinancialCoachAppS.png)
 
 ## Features
