@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: fincoach
+      POSTGRES_USER: fincoach
+      POSTGRES_PASSWORD: fincoach_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fincoach"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgresql+asyncpg://fincoach:fincoach_dev_password@postgres:5432/fincoach
+      REDIS_URL: redis://redis:6379
+      SECRET_KEY: ${SECRET_KEY:-dev_mJk8nP2xQw5tRz9vLm3nBc7sXy4aWh6uFg1eKj0iDq}
+      # Plaid Configuration
+      PLAID_CLIENT_ID: ${PLAID_CLIENT_ID:-697db7f9336016002220077b}
+      PLAID_SECRET: ${PLAID_SECRET:-7aaa2ab3622e8a89c6b58c8ac7d8c5}
+      PLAID_ENV: ${PLAID_ENV:-sandbox}
+      # AI Services - Gemini (Google)
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:-AIzaSyBxNqnIwiRuebW8Xt2J6Fo3jpWnmywFSsM}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3-flash-preview}
+      # Alternative AI Services (optional)
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      # Feature Flags
+      MAX_INSIGHTS_PER_DAY: ${MAX_INSIGHTS_PER_DAY:-2}
+      ENABLE_MFA: ${ENABLE_MFA:-False}
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+volumes:
+  postgres_data:
+  redis_data:
