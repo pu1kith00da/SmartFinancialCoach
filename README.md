@@ -6,6 +6,8 @@ Design Document: [DESIGN_DOCUMENTATION.md](https://github.com/pu1kith00da/SmartF
 
 Demo Link: https://youtu.be/eqmDgPwv76U
 
+![Diagram of Smart Financial Coach Application](SmartFinancialCoachAppS.png)
+
 ## Features
 
 Smart Financial Coach provides comprehensive financial management capabilities designed to give users complete visibility into their finances while leveraging artificial intelligence for personalized recommendations. The platform integrates with banks through Plaid's secure API, automatically categorizes transactions, and uses Google Gemini AI to analyze spending patterns and generate actionable insights. Users can track progress toward financial goals, monitor subscription services, and receive real-time alerts when budgets are exceeded, all through an intuitive dashboard interface.
