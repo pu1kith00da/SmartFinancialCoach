@@ -26,6 +26,9 @@ Smart Financial Coach is an AI-powered personal financial management platform de
 
 ## System Architecture
 
+The below figure presents the system architecture of the Smart Financial Coach before we go delve into detailed steps:
+![System architecture of the Smart Financial Coach](SmartFinancialCoachArchitectureS.png)
+
 ### High-Level Architecture
 
 The Smart Financial Coach follows a three-tier architecture pattern that separates concerns between presentation, business logic, and data management. The **Client Layer** consists of a Next.js 14 frontend running React 19 components that handle all user interactions through the dashboard, transaction views, goals management, and an AI-powered chatbot interface. The **API Layer** is powered by FastAPI with Python 3.11+, providing RESTful endpoints organized by resource type (authentication, Plaid integration, insights, chat, analytics). Within the API layer, the **Service Layer** encapsulates all business logic, including the AI/LLM client for Google Gemini integration, an MCP (Model Context Protocol) server for structured tool calling, and specialized services for transactions, budgets, goals, and insights. The **Data & External Services** layer includes PostgreSQL for persistent storage via async SQLAlchemy, Redis for caching and rate limiting, and external API integrations with Plaid for banking data and Google Gemini for AI capabilities. This layered architecture enables clear separation of concerns, independent scaling of components, and maintainable code organization.
